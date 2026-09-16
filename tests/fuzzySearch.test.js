@@ -1,0 +1,3 @@
+import { describe,it,expect } from 'vitest';import { levenshtein,getFuzzyMatches,acceptableTypo } from '../src/utils/fuzzySearch';
+const index=[{id:25,name:'pikachu'},{id:26,name:'raichu'},{id:571,name:'zoroark'},{id:10076,name:'zoroark-hisui',isVariant:true}];
+describe('fuzzy search',()=>{it('calcula Levenshtein',()=>expect(levenshtein('picachu','pikachu')).toBe(1));it('corrige Pykaqu hacia Pikachu',()=>{const best=getFuzzyMatches('Pykaqu',index,1)[0];expect(best.name).toBe('pikachu');expect(acceptableTypo('Pykaqu',best)).toBe(true);});it('encuentra variedades compactadas',()=>expect(getFuzzyMatches('zoroark hisui',index,1)[0].name).toBe('zoroark-hisui'));});

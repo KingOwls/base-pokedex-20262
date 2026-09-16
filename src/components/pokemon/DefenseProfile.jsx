@@ -1,0 +1,2 @@
+import TypeBadge from '../common/TypeBadge.jsx';
+export default function DefenseProfile({profile={}}){const groups=[4,2,1,.5,.25,0].map(m=>[m,Object.entries(profile).filter(([,v])=>v===m).map(([t])=>t)]);return <div className="defense-grid">{groups.map(([m,types])=><div className="defense-group" key={m}><strong>{m}×</strong><div>{types.length?types.map(t=><TypeBadge key={t} type={t}/>):<span className="muted">Ninguno</span>}</div></div>)}</div>}

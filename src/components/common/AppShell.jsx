@@ -1,0 +1,2 @@
+import CrowlethHeader from './CrowlethHeader.jsx';import {assetUrl} from '../../utils/assets.js';
+export default function AppShell({children,dark=false}){return <div className={dark?'app dark-mode':'app'}><CrowlethHeader/><main>{children}</main><footer className="footer"><img src={assetUrl('crowleth/Creado_Por.png')} alt="Motivo botánico Crowleth"/><div><b>Crowleth Pokédex</b><span>Explora, investiga y descubre Pokémon.</span><small>Jorge Luis Osorio Silva · Proyecto académico</small></div></footer></div>}

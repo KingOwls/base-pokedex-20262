@@ -1,0 +1,21 @@
+{
+  "dex": 176,
+  "folder": "0176",
+  "status": "ok",
+  "animation": "Idle",
+  "frame_width": 24,
+  "frame_height": 48,
+  "frames": 6,
+  "durations_ticks": [
+    30,
+    4,
+    3,
+    3,
+    3,
+    4
+  ],
+  "direction": "right",
+  "direction_row": 2,
+  "png": "idle_right.png",
+  "gif": "idle_right.gif"
+}

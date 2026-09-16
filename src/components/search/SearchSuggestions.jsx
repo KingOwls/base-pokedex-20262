@@ -1,0 +1,2 @@
+import { padDex,titleCase } from '../../utils/pokemonUtils';
+export default function SearchSuggestions({items,onSelect}){if(!items?.length)return null;return <div className="suggestions"><strong>¿Quizá buscabas esto?</strong><div className="suggestion-list">{items.map(x=><button key={`${x.kind}-${x.name}`} className="suggestion-button" onClick={()=>onSelect(x.name)}>{titleCase(x.name)} · {x.isVariant||x.id>=10000?'Forma / variedad':padDex(x.id)}</button>)}</div></div>;}

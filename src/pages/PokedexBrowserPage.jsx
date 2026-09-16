@@ -1,0 +1,15 @@
+import {useEffect,useMemo,useState} from 'react';
+import {getSpeciesIndex,getPokedex} from '../api/pokeApi.js';
+import {getGeneration} from '../data/generations.js';
+import PixelPokemonSprite from '../components/common/PixelPokemonSprite.jsx';
+import {Link} from '../routes/router.jsx';
+import {titleCase,padDex,extractId} from '../utils/pokemonUtils.js';import {assetUrl} from '../utils/assets.js';
+
+export default function PokedexBrowserPage({slug}){
+ const g=getGeneration(slug);const [entries,setEntries]=useState([]);const [loading,setLoading]=useState(true);const [error,setError]=useState('');const [q,setQ]=useState('');const [limit,setLimit]=useState(slug==='national'?240:220);
+ useEffect(()=>{let live=true;setLoading(true);setError('');(async()=>{try{let list=[];if(g.special){try{const dex=await getPokedex(g.pokedex);list=(dex.pokemon_entries||[]).map(e=>({id:extractId(e.pokemon_species.url),name:e.pokemon_species.name}));}catch{list=[];}}
+ if(!list.length){const all=await getSpeciesIndex();list=all.filter(x=>x.id>=g.range[0]&&x.id<=g.range[1]).map(x=>({id:x.id,name:x.name}));}
+ if(live)setEntries(list.sort((a,b)=>a.id-b.id));}catch(e){if(live)setError(e.message)}finally{if(live)setLoading(false)}})();return()=>{live=false}},[slug]);
+ const filtered=useMemo(()=>entries.filter(e=>!q||e.name.includes(q.toLowerCase())||String(e.id).includes(q.replace('#',''))),[entries,q]);
+ return <section className="dex-browser" style={{'--gen-accent':g.accent}}><aside className="dex-sidebar"><div className="dex-device"><img src={assetUrl(`crowleth/${g.asset}`)} alt="Pokédex"/><div><span>Generación {g.roman}</span><strong>{g.name}</strong></div></div><input value={q} onChange={e=>setQ(e.target.value)} placeholder="Filtrar esta Pokédex…"/><div className="dex-list" aria-live="polite">{loading&&<p className="state">Cargando archivo…</p>}{error&&<p className="state error">{error}</p>}{filtered.slice(0,limit).map(e=><Link key={`${e.id}-${e.name}`} to={`/pokedex/${e.name}?region=${slug}`} className="dex-row"><PixelPokemonSprite id={e.id} name={e.name}/><span className="dex-number">{padDex(e.id)}</span><b>{titleCase(e.name)}</b></Link>)}{filtered.length>limit&&<button className="load-more" onClick={()=>setLimit(v=>v+240)}>Cargar más</button>}</div><div className="region-strip">{['kanto','johto','hoenn','sinnoh','unova','kalos','alola','galar','hisui','paldea','national'].map(r=><Link key={r} to={`/pokedex/${r}`} className={r===slug?'active':''}>{r==='national'?'NAC':r.slice(0,3).toUpperCase()}</Link>)}</div></aside><div className="dex-welcome"><div><span className="kicker">CROWLETH ARCHIVE · {g.name.toUpperCase()}</span><h1>Selecciona un Pokémon</h1><p>La lista lateral usa tus sprites pixel art. Abre cualquier especie para consultar resumen, estadísticas, evolución, formas, defensas y movimientos.</p><div className="welcome-stat"><strong>{entries.length||'…'}</strong><span>entradas disponibles</span></div></div><img src={assetUrl('crowleth/CrowlethBase.png')} alt="Crowleth"/></div></section>
+}

@@ -1,0 +1,3 @@
+import { describe,it,expect } from 'vitest';import { combineTypeRelations } from '../src/utils/typeRelations';
+const normal={damage_relations:{double_damage_from:[{name:'fighting'}],half_damage_from:[],no_damage_from:[{name:'ghost'}]}};const ghost={damage_relations:{double_damage_from:[{name:'ghost'},{name:'dark'}],half_damage_from:[{name:'poison'},{name:'bug'}],no_damage_from:[{name:'normal'},{name:'fighting'}]}};
+describe('type relations',()=>{it('combina Normal/Ghost como Zoroark Hisui',()=>{const m=combineTypeRelations([normal,ghost]);expect(m.fighting).toBe(0);expect(m.normal).toBe(0);expect(m.ghost).toBe(0);expect(m.dark).toBe(2);expect(m.poison).toBe(.5);});});
