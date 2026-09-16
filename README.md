@@ -1,7 +1,7 @@
 # Crowleth Pokédex
 
 **Autor:** Jorge Luis Osorio Silva  
-**GitHub Pages:** [pendiente de desplegar]
+**GitHub Pages:** [Pagina Web](https://kingowls.github.io/base-pokedex-20262/)
 
 Crowleth Pokédex es una Pokédex web interactiva construida con React + Vite y PokéAPI. Combina consulta enciclopédica, navegación por generaciones y regiones, pixel art local y cinco minijuegos de PokéArcade.
 
@@ -87,5 +87,5 @@ GitHub Pages: [pendiente de desplegar]
 por la URL final, por ejemplo:
 
 ```text
-GitHub Pages: https://usuario.github.io/crowleth-pokedex/
+GitHub Pages: https://kingowls.github.io/base-pokedex-20262/
 ```
