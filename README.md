@@ -4,7 +4,7 @@
 **GitHub Pages:** [Pagina Web
 ](https://kingowls.github.io/base-pokedex-20262/)
 
-Crowleth Pokédex es una Pokédex web interactiva construida con React + Vite y PokéAPI. Combina consulta enciclopédica, navegación por generaciones y regiones, pixel art local y cinco minijuegos de PokéArcade.
+Crowleth Pokédex es una Pokédex web interactiva construida con React + Vite y PokéAPI. Combina consulta enciclopédica, navegación por generaciones y regiones, pixel art local, búsqueda tolerante a errores y ocho minijuegos de PokéArcade.
 
 ## Alcance de esta versión
 
@@ -18,6 +18,10 @@ Crowleth Pokédex es una Pokédex web interactiva construida con React + Vite y 
 - Who’s That Pokémon?.
 - Type Master.
 - PokéSprint con 12 corredores y eventos de carrera.
+- PokéImpostor: encuentra al Pokémon que rompe el patrón.
+- Type Grid: completa una cuadrícula cruzando criterios.
+- BST Builder: construye un equipo que alcance un objetivo de estadísticas base.
+- Buscador global y buscadores de juego con autocompletado, sprites pixel art, navegación por teclado y tolerancia a errores de escritura.
 - Diseño responsive, navegación por teclado y soporte para `prefers-reduced-motion`.
 
 > El RPG, capturas, mapas jugables, mochila, técnicas de campo y Event Engine están deliberadamente fuera del alcance de esta entrega.
@@ -53,7 +57,7 @@ npm test
 Los motores puros también incluyen pruebas compatibles con Node:
 
 ```bash
-node --test src/utils/crowleth-core.node.test.js src/utils/arcade.node.test.js
+npm test
 ```
 
 ## Estructura principal

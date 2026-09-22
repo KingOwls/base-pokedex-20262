@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "node --test src/utils/crowleth-core.node.test.js src/utils/arcade.node.test.js",
+    "test": "node --test src/utils/crowleth-core.node.test.js src/utils/arcade.node.test.js src/utils/pokedexUi.node.test.js src/utils/pokemonSearch.node.test.js src/utils/searchUi.node.test.js src/utils/arcadeNoveltyGames.node.test.js src/utils/arcadeNoveltyIntegration.node.test.js src/utils/arcadeNoveltyUi.node.test.js",
     "test:vitest": "vitest run",
     "test:watch": "vitest"
   },

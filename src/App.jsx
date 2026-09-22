@@ -13,9 +13,10 @@ import WhosThatPage from './pages/WhosThatPage.jsx';
 import TypeMasterPage from './pages/TypeMasterPage.jsx';
 import PokeSprintPage from './pages/PokeSprintPage.jsx';
 import {GENERATIONS} from './data/generations.js';
+import {getNoveltyArcadePage} from './routes/arcadeNoveltyRoutes.js';
 
 const regionSlugs=new Set([...GENERATIONS.map(g=>g.slug),'national']);
-export default function App(){const path=usePath();let page;let dark=false;
+export default function App(){const path=usePath();const NoveltyArcadePage=getNoveltyArcadePage(path);let page;let dark=false;
  if(path==='/')page=<HomePage/>;
  else if(path==='/pokedex'||path==='/pokedex/')page=<PokedexLibraryPage/>;
  else if(path.startsWith('/pokedex/')){const id=decodeURIComponent(path.split('/')[2]||'');page=regionSlugs.has(id)?<PokedexBrowserPage slug={id}/>:<PokemonDetailPage identifier={id}/>;}
@@ -27,5 +28,6 @@ export default function App(){const path=usePath();let page;let dark=false;
  else if(path==='/arcade/whos-that'){page=<WhosThatPage/>;dark=true;}
  else if(path==='/arcade/type-master'){page=<TypeMasterPage/>;dark=true;}
  else if(path==='/arcade/sprint'){page=<PokeSprintPage/>;dark=true;}
+ else if(NoveltyArcadePage){page=<NoveltyArcadePage/>;dark=true;}
  else page=<section className="full-state"><h1>404</h1><p>Este archivo no existe en la Pokédex de Crowleth.</p></section>;
  return <AppShell dark={dark}>{page}</AppShell>}

@@ -12,3 +12,5 @@ export const GENERATIONS=[
 ];
 export const NATIONAL={slug:'national',name:'Nacional',generation:0,roman:'I–IX',range:[1,1025],asset:'Poke09.jpg',accent:'#d6a43e'};
 export const getGeneration=slug=>slug==='national'?NATIONAL:GENERATIONS.find(g=>g.slug===slug)||NATIONAL;
+
+export const getGenerationForPokemonId=id=>{const n=Number(id);return GENERATIONS.find(g=>!g.special&&n>=g.range[0]&&n<=g.range[1])||NATIONAL;};
